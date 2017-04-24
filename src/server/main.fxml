@@ -30,7 +30,11 @@
                           <MenuItem mnemonicParsing="false" text="Close" onAction="#onClose"/>
                         </items>
                       </Menu>
-                        <Menu mnemonicParsing="false" text="Settings" onAction="#onSettings"/>
+                      <Menu text="Settings">
+                        <items>
+                            <MenuItem text="Server Settings" onAction="#onSettings" />
+                        </items>
+                      </Menu>
                       <Menu mnemonicParsing="false" text="Build" />
                       <Menu mnemonicParsing="false" text="About">
                         <items>

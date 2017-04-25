@@ -19,7 +19,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        getCountry();  //XXX for testing
         log("---------- NEW PROGRAM RUN ----------", Logging.LogType.INFO);
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("HUNT");
@@ -33,22 +32,5 @@ public class Main extends Application {
         launch(args);
     }
 
-    private static void getCountry() {
 
-        String ip = "8.8.8.8";
-        String result = null;
-        try {
-            URL url = new URL("freegeoip.net/json/" + ip);
-            URLConnection connection = url.openConnection();
-            InputStream response = connection.getInputStream();
-            Scanner s = new Scanner(response).useDelimiter("\\A");
-            result = s.hasNext() ? s.next() : "";  // wtf is this
-
-            JSONObject resultJson = new JSONObject(result);
-
-        } catch (Exception e) {
-
-        }
-        System.out.println(result);
-    }
 }

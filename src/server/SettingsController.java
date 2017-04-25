@@ -1,16 +1,19 @@
 package server;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.io.IOException;
 
+import javafx.scene.paint.*;
+import javafx.scene.paint.Paint;
 import server.helpers.Listener;
 import server.helpers.Logging;
 import server.helpers.Logging.LogType;
 
-import com.alertfx.Alerts;
 
 import static server.helpers.Logging.log;
 
@@ -27,8 +30,15 @@ public class SettingsController {
     @FXML
     private PasswordField settingsPassField;
 
+    @FXML
+    private Label statusLabel;
 
-    static server.helpers.Alerts alerts = new server.helpers.Alerts();
+
+    public interface colors{
+        Paint RED = Paint.valueOf("Firebrick");
+        Paint GREEN = Paint.valueOf("Green");
+        Paint BLUE = Paint.valueOf("Blue");
+    }
 
     public void onSettingsApply() {
 
@@ -47,15 +57,25 @@ public class SettingsController {
             Thread listener = new Listener(port);
             listener.setDaemon(true);
             listener.start();
+            if (listener.isAlive()){
+                setSettingsStatus("Listening on port " + port, colors.GREEN);
+            } else {
+                setSettingsStatus("Unable to start listener, check the log.", colors.RED);
+            }
         } catch (IOException ioe){
             try {
                 // In case the port is unavailable
                 log("Unable to bind to port " + port, LogType.ERROR);
-                alerts.alert();
             } catch (IOException e){
                 System.err.println("Unable to bind to port " + port);
                 e.printStackTrace();
             }
         }
+    }
+
+
+    public void setSettingsStatus(String s, javafx.scene.paint.Paint color){
+        statusLabel.setTextFill(color);
+        statusLabel.setText(s);
     }
 }

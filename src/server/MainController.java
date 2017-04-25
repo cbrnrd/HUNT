@@ -25,7 +25,7 @@ public class MainController {
 
 
     public void onClose(){
-        Platform.exit();
+        System.exit(0);
     }
 
     public void onSettings(){

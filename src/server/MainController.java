@@ -5,27 +5,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Menu;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 
 
-public class Controller {
+public class MainController {
+
+
 
     @FXML
-    private GridPane settingsGridPane;
-
-
-
-    public void initialize(){
-
-    }
+    public static Label statusLabel;
 
 
     public void onClose(){
@@ -41,10 +37,24 @@ public class Controller {
             stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("HUNT Server Settings");
             stage.setScene(new Scene(root1));
+            stage.setAlwaysOnTop(true);
             stage.show();
         } catch (IOException ioe){
-
+            System.err.println("Unable to load settings.fxml");
         }
     }
+
+    public static void setStatus(String s){
+        statusLabel.setText(s);
+    }
+
+    public void onLogOpen(){
+        try {
+            Desktop.getDesktop().open(new File(System.getProperty("user.dir") + "/.HUNT_LOG.txt"));
+        } catch (IOException ioe){
+            System.out.println("Unable to open log");
+        }
+    }
+
 
 }

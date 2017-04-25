@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.MainController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -27,12 +28,13 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Close" onAction="#onClose"/>
+                          <MenuItem text="Open Log" onAction="#onLogOpen" />
+                          <MenuItem mnemonicParsing="false" onAction="#onClose" text="Close" />
                         </items>
                       </Menu>
                       <Menu text="Settings">
                         <items>
-                            <MenuItem text="Server Settings" onAction="#onSettings" />
+                            <MenuItem onAction="#onSettings" text="Server Settings" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Build" />
@@ -53,6 +55,7 @@
                 <TableColumn prefWidth="107.0" text="C2" />
               </columns>
             </TableView>
-         </center></BorderPane>
+         </center>
+         </BorderPane>
    </children>
 </GridPane>
